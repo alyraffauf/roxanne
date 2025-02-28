@@ -4,7 +4,11 @@
   pkgs,
   ...
 }: {
-  # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
+  imports = [
+    ./home.nix
+    ./secrets.nix
+  ];
+
   boot.loader = {
     grub.enable = false;
     generic-extlinux-compatible.enable = true;
@@ -29,6 +33,11 @@
   };
 
   networking = {
+    firewall = {
+      allowedUDPPorts = [config.services.tailscale.port];
+      trustedInterfaces = [config.services.tailscale.interfaceName];
+    };
+
     hostName = "roxanne";
     networkmanager.enable = true;
     nftables.enable = true;
@@ -109,6 +118,12 @@
       enable = true;
       openFirewall = true;
       # settings.PasswordAuthentication = false;
+    };
+
+    tailscale = {
+      enable = true;
+      authKeyFile = config.age.secrets.tailscaleAuthKey.path;
+      openFirewall = true;
     };
   };
 
