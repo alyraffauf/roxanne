@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -111,7 +112,26 @@
     };
   };
 
-  system.stateVersion = "25.05";
+  system = {
+    autoUpgrade = {
+      enable = true;
+      allowReboot = lib.mkDefault true;
+      dates = "02:00";
+      flags = ["--accept-flake-config"];
+      flake = config.environment.variables.FLAKE;
+      operation = lib.mkDefault "boot";
+      persistent = true;
+      randomizedDelaySec = "60min";
+
+      rebootWindow = {
+        lower = "02:00";
+        upper = "06:00";
+      };
+    };
+
+    stateVersion = "25.05";
+  };
+
   time.timeZone = "America/New_York";
 
   users.users.aly = {
