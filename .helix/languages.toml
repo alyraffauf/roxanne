@@ -1,0 +1,22 @@
+[[language]]
+auto-format = true
+formatter.command = "alejandra"
+language-servers = ["nixd"]
+name = "nix"
+
+[[language]]
+auto-format = true
+file-types = ["sh", "bash", "dash", "ksh", "mksh"]
+formatter = { command = "shfmt", args = ["-i", "2"] }
+language-servers = [ "bash-language-server" ]
+name = "bash"
+
+[[language]]
+auto-format = true
+file-types = ["md", "markdown", "mdx"]
+formatter = { command = "prettier", args = ["--stdin-filepath", "%val{filename}", "--parser", "markdown"] }
+name = "markdown"
+
+[language-server.bash-language-server]
+command = "bash-language-server"
+args = ["start"]
