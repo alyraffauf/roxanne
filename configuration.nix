@@ -147,6 +147,13 @@
     stateVersion = "25.05";
   };
 
+  systemd.oomd = {
+    enable = true;
+    enableRootSlice = true;
+    enableSystemSlice = true;
+    enableUserSlices = true;
+  };
+
   time.timeZone = "America/New_York";
 
   users.users.aly = {
