@@ -136,6 +136,12 @@
       authKeyFile = config.age.secrets.tailscaleAuthKey.path;
       openFirewall = true;
     };
+
+    uptime-kuma = {
+      enable = true;
+      appriseSupport = true;
+      settings.HOST = "0.0.0.0";
+    };
   };
 
   system = {
