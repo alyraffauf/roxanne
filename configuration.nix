@@ -157,7 +157,7 @@
   time.timeZone = "America/New_York";
 
   users.users.aly = {
-    isNormalUser = true;
+    description = "Aly Raffauf";
 
     extraGroups = [
       "dialout"
@@ -171,6 +171,14 @@
       "video"
       "wheel"
     ];
+
+    hashedPassword = "$y$j9T$i6ZHLbNl.we5t2xmheZYR1$LnzZu.PzTPWG15L/WgfL.9KGklgcMLoozIH9aTZgi84";
+    isNormalUser = true;
+
+    openssh.authorizedKeys.keyFiles =
+      lib.map (file: ./secrets/publicKeys + "/${file}")
+      (lib.filter (file: lib.hasPrefix "aly_" file)
+        (builtins.attrNames (builtins.readDir ./secrets/publicKeys)));
   };
 
   zramSwap = {
