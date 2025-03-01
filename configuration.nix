@@ -40,7 +40,12 @@
     };
 
     hostName = "roxanne";
-    networkmanager.enable = true;
+
+    networkmanager = {
+      enable = true;
+      wifi.powersave = false;
+    };
+
     nftables.enable = true;
   };
 
