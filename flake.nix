@@ -14,7 +14,7 @@
       url = "github:nix-community/home-manager/master";
     };
 
-    nixcfg.url = "github:alyraffauf/nixcfg";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = {self, ...}: let

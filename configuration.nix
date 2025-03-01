@@ -2,17 +2,14 @@
   config,
   lib,
   pkgs,
+  self,
   ...
 }: {
   imports = [
     ./home.nix
     ./secrets.nix
+    self.inputs.nixos-hardware.nixosModules.raspberry-pi-4
   ];
-
-  boot.loader = {
-    grub.enable = false;
-    generic-extlinux-compatible.enable = true;
-  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
