@@ -11,9 +11,30 @@
     self.inputs.nixos-hardware.nixosModules.raspberry-pi-4
   ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
-    fsType = "ext4";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
+      fsType = "ext4";
+    };
+
+    "/mnt/Media" = let
+      fsType = "cifs";
+      options = [
+        "gid=100"
+        "guest"
+        "nofail"
+        "uid=${toString config.users.users.aly.uid}"
+        "x-systemd.after=network.target"
+        "x-systemd.after=tailscaled.service"
+        "x-systemd.automount"
+        "x-systemd.device-timeout=5s"
+        "x-systemd.idle-timeout=60"
+        "x-systemd.mount-timeout=5s"
+      ];
+    in {
+      inherit options fsType;
+      device = "//mauville/Media";
+    };
   };
 
   hardware.enableRedistributableFirmware = true;
