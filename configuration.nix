@@ -125,6 +125,13 @@
       };
     };
 
+    journald.extraConfig = ''
+      # Store logs in RAM
+      Compress=yes
+      Storage=volatile
+      SystemMaxUse=50M
+    '';
+
     openssh = {
       enable = true;
       openFirewall = true;
