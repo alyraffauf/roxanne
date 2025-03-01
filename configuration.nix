@@ -172,4 +172,10 @@
       "wheel"
     ];
   };
+
+  zramSwap = {
+    enable = lib.mkDefault true;
+    algorithm = lib.mkDefault "zstd";
+    priority = lib.mkDefault 100;
+  };
 }
