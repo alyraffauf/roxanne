@@ -19,6 +19,7 @@
     fsType = "ext4";
   };
 
+  hardware.enableRedistributableFirmware = true;
   i18n.defaultLocale = "en_US.UTF-8";
 
   environment = {
