@@ -186,7 +186,7 @@
     autoUpgrade = {
       enable = true;
       allowReboot = lib.mkDefault true;
-      dates = "02:00";
+      dates = "04:00";
       flags = ["--accept-flake-config"];
       flake = config.environment.variables.FLAKE;
       operation = lib.mkDefault "boot";
@@ -194,7 +194,7 @@
       randomizedDelaySec = "60min";
 
       rebootWindow = {
-        lower = "02:00";
+        lower = "04:00";
         upper = "06:00";
       };
     };
