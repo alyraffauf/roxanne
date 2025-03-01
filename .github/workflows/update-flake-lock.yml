@@ -1,0 +1,26 @@
+name: update-flake-lock
+on:
+  schedule:
+    - cron: "0 12 * * 3"
+  workflow_dispatch:
+jobs:
+  update-flake-lock:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@main
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 1
+      - name: Setup Git
+        run: |
+          git config --local user.name  "github-actions[bot]"
+          git config --local user.email  "github-actions[bot]@users.noreply.github.com"
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/update-flake-lock@main
+        with:
+          token: ${{ secrets.FLAKE_UPDATE_PAT }}
+          pr-title: "flake: update inputs"
+          pr-assignees: alyraffauf
+          pr-labels: |-
+            dependencies
+            automated
