@@ -15,6 +15,11 @@
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    secrets = {
+      url = "github:alyraffauf/secrets";
+      flake = false;
+    };
   };
 
   outputs = {self, ...}: let
