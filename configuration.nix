@@ -42,10 +42,12 @@
 
   environment = {
     systemPackages = with pkgs; [
+      (inxi.override {withRecommends = true;})
+      curl
       git
       htop
-      (inxi.override {withRecommends = true;})
       python3
+      wget
     ];
 
     variables.FLAKE = lib.mkDefault "github:alyraffauf/roxanne";
