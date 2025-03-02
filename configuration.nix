@@ -45,7 +45,9 @@
       (inxi.override {withRecommends = true;})
       curl
       git
+      helix
       htop
+      nodePackages.nodejs
       python3
       wget
     ];
