@@ -217,7 +217,7 @@
       dates = "04:00";
       flags = ["--accept-flake-config"];
       flake = config.environment.variables.FLAKE;
-      operation = lib.mkDefault "boot";
+      operation = lib.mkDefault "switch";
       persistent = true;
       randomizedDelaySec = "60min";
 
